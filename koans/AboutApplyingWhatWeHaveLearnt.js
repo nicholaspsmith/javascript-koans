@@ -47,9 +47,24 @@ describe("About Applying What We Have Learnt", function() {
         }
       });
 
+      var mushroomFree = _(products).filter(function (x) { 
+        var noMushies = true;
+        for (var i = 0; i < x.ingredients.length; i++) {
+          if (x.ingredients[i] === "mushrooms") {
+            noMushies = false;
+          }
+        }
+        if (noMushies) {
+          return x;
+        }
+      });
+
+
       var edible = _.intersection(nutFree, mushroomFree);
 
-      expect(productsICanEat.length).toBe();
+      console.log(edible);
+      
+      expect(productsICanEat.length).toBe(edible.length);
   });
 
   /*********************************************************************************/
