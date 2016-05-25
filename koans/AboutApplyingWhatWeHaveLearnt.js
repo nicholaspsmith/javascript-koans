@@ -121,10 +121,50 @@ describe("About Applying What We Have Learnt", function() {
 
   /*********************************************************************************/
   /* UNCOMMENT FOR EXTRA CREDIT */
-  /*
+  
   it("should find the largest prime factor of a composite number", function () {
+    var largestPrimeFactor = 1;
+    var compositeNumber = 22;
 
+    // get a list of all factors of 22
+    // from that list, get all primes
+    // from that list, return the max
+
+    var isAFactorOf = function(divisor, dividend) {
+      return dividend % divisor === 0;
+    }
+
+    var isPrime = function(num) {
+      if (num === 0 || num === 1) {
+        return false;
+      }
+      // if number has no factors (exclude 1 and itself)
+      for (var i = 2; i < num; i++) {
+        if (isAFactorOf(i,num)) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    largestPrimeFactor = _.range(1, compositeNumber)
+    .filter(function(num){
+      return isAFactorOf(num, compositeNumber);
+    })
+    .filter(function(num){
+      return isPrime(num)
+    })
+    .reduce(function(memo, num){
+      if (num > memo) {
+        return num;
+      }
+      return memo;
+    }, 0);
+
+    expect(largestPrimeFactor).toBe(11);
   });
+  
+  /*
 
   it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
 
